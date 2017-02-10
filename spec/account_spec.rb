@@ -25,7 +25,7 @@ it 'is expected to have :active status on initialize' do
 end
 
 it 'deactivates account using Class method' do
-  Account.deactivate(subject)
+  subject.deactivate
   expect(subject.account_status).to eq :deactivated
 end
 

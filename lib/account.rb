@@ -12,12 +12,11 @@ class Account
     @owner = set_owner(attrs[:owner])
   end
 
-  private
-
-
   def deactivate
     @account_status = :deactivated
   end
+
+  private
 
   def set_exp_date
     Date.today.next_year(STANDARD_VALIDITY_YEARS).strftime("%m/%y")
@@ -28,7 +27,7 @@ class Account
   end
 
   def missing_owner
-    raise 'An account owner is required'
+    raise 'An Account owner is required'
   end
 
 end
