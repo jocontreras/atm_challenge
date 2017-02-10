@@ -62,5 +62,5 @@ end
   end
 
   def account_disabled?(account_status)
-    account_status != 'active'
-  end
+   account_status != :active
+ end

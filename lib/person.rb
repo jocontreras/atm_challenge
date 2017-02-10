@@ -1,3 +1,7 @@
+require './lib/atm.rb'
+require './lib/account.rb'
+
+
 class Person
 
   attr_accessor :name, :cash, :account
@@ -8,20 +12,39 @@ class Person
     @account =set_account(attrs[:account])
   end
 
-private
 
-
-def set_name(obj)
-    obj.nil? ? miss_name : @name = obj
+def set_name(obj_name)
+    obj_name.nil? ? miss_name : @name = obj_name
 end
 
 def miss_name
    raise 'A name is required'
  end
 
- def set_account(obj)
-   return obj unless nil?
+ def set_account(obj_account)
+   return obj_account unless nil?
  end
+
+ def create_account
+    @account = Account.new(owner: self)
+end
+
+def deposit(amount)
+    @account.nil? ? has_no_account : deposit_funds(amount)
+  end
+
+  def deposit_funds(amount)
+    @cash -= amount
+    @account.balance += amount
+  end
+
+  def has_no_account
+    raise RuntimeError, 'No existing account'
+  end
+
+
+
+
 
 
 
