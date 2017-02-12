@@ -9,7 +9,7 @@ class Person
   def initialize(attrs = {})
     @name = set_name(attrs[:name])
     @cash = 0
-    @account =set_account(attrs[:account])
+    @account = nil
   end
 
   def create_account
@@ -17,14 +17,30 @@ class Person
   end
 
   def deposit(amount)
-      @account.nil? ? has_no_account : deposit_funds(amount)
+      @account.nil? ? missing_account : deposit_funds(amount)
   end
 
-  def get_cash(args = {})
-   @account.nil? ? missing_account : withdraw_funds(args)
+  def withdraw(args = {})
+    @account.nil? ? missing_account : withdraw_funds(args)
   end
 
   private
+
+  def set_name(name)
+      name.nil? ? missing_name : name
+  end
+
+  def missing_name
+   raise ArgumentError,'A name is required'
+  end
+
+  def set_account(obj_account)
+    return obj_account unless nil?
+  end
+
+ def missing_account
+    raise RuntimeError, 'No existing account'
+  end
 
   def deposit_funds(amount)
     @cash -= amount
@@ -32,43 +48,24 @@ class Person
   end
 
   def withdraw_funds(args)
-    args[:atm] == nil ? missing_atm : atm = args[:atm]
+    args[:atm].nil? ? missing_atm : atm = args[:atm]
     account = @account
     amount = args[:amount]
     pin = args[:pin]
     response = atm.withdraw(amount, pin, account)
-    response[:status] == true ? increase_cash(response) : response
-  end
-
-  def increase_cash(response)
-    @cash += response[:amount]
-  end
-
-  def set_name(obj_name)
-      obj_name.nil? ? miss_name : @name = obj_name
-  end
-
-  def miss_name
-   raise 'A name is required'
- end
-
- def missing_account
-    raise RuntimeError, 'No account present'
-  end
-
-  def missing_atm
-    raise RuntimeError, 'An ATM is required'
-  end
-
- def set_account(obj_account)
-   return obj_account unless nil?
- end
-
-  def has_no_account
-    raise RuntimeError, 'No existing account'
+    response[:status] ? increase_cash(response) : response
   end
 
   def setting_atm(args)
      args[:atm].nil? ? missing_atm : args[:atm]
    end
+
+  def missing_atm
+    raise RuntimeError, 'An ATM is required'
+  end
+
+   def increase_cash(response)
+     @cash += response[:amount]
+   end
+
 end
