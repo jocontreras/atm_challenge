@@ -6,7 +6,6 @@ class Person
 
   attr_accessor :name, :cash, :account
 
-
   def initialize(attrs = {})
     @name = set_name(attrs[:name])
     @cash = 0
@@ -21,8 +20,8 @@ class Person
       @account.nil? ? has_no_account : deposit_funds(amount)
   end
 
-  def withdraw(args = {})
-   @account == nil ? missing_account : withdraw_funds(args)
+  def get_cash(args = {})
+   @account.nil? ? missing_account : withdraw_funds(args)
   end
 
   private
@@ -69,14 +68,7 @@ class Person
     raise RuntimeError, 'No existing account'
   end
 
-
-
-
-
-
-
-
-
-
-
+  def setting_atm(args)
+     args[:atm].nil? ? missing_atm : args[:atm]
+   end
 end

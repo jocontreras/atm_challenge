@@ -29,6 +29,11 @@ it 'deactivates account using Class method' do
   expect(subject.account_status).to eq :deactivated
 end
 
+it 'deactivates account using Instance method' do
+  subject.deactivate
+  expect(subject.account_status).to eq :deactivated
+end
+
 it 'is expected to have an owner' do
   expect(subject.owner).to eq person
 end
