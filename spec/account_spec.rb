@@ -1,4 +1,4 @@
-require './lib/account.rb'
+require './lib/account'
 
 describe Account do
   let(:person) {instance_double('Person', name: 'Jennifer')}

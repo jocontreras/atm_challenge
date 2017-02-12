@@ -1,5 +1,5 @@
-require './lib/atm.rb'
-require './lib/account.rb'
+require './lib/atm'
+require './lib/account'
 
 
 class Person
