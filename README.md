@@ -2,7 +2,7 @@
 ATM-challenge is the week1 challenge of the Craft Academy Bootcamp. This is a simmulation of ATM-machine that allow its customers to 
 deposit and withdraw funds from their account. Ruby is the programming used and RSpec for testing.
 
-###How to use:
+##How to use:
 Open `irb` and run the following commands:
 ``` irb
 2.3.3 :001 > load 'lib/atm.rb'
@@ -10,8 +10,6 @@ Open `irb` and run the following commands:
 2.3.3 :002 > load 'lib/account.rb'
  => true 
 2.3.3 :003 > load 'lib/person.rb'
-/Users/Osama/Projects/atm/lib/account.rb:9: warning: already initialized constant Account::STANDARD_VALIDITY_YEARS
-lib/account.rb:9: warning: previous definition of STANDARD_VALIDITY_YEARS was here   *(due to changed of the version of ruby)*
  => true  
  ```
  ``` irb
@@ -27,7 +25,23 @@ lib/account.rb:9: warning: previous definition of STANDARD_VALIDITY_YEARS was he
  #Deposit funds
 2.3.3 :007 > person.deposit 100
  => 100 
-#Withdraw
  ```
+ ``` irb
+ #Perform Withdraw
+2.3.3 :009 > person.withdraw(amount:50, account:person.account, pin:person.account.pin_code, atm:atm)
+ => -50 
+ 2.3.3 :010 > person.deposit(100)
+ => 150 
+ #Another test
+ 2.3.3 :008 > person.withdraw(amount:100, account:person.account, pin: person.account.pin_code, atm:atm)
+ => 0 
+ 2.3.3 :012 > person.cash
+ => 0 
+2.3.3 :009 > atm.funds
+ => 900 
+
+  ```
  
  
+
+
