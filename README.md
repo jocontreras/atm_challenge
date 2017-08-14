@@ -1,10 +1,24 @@
 # ATM challenge
-ATM-challenge is the week1 challenge of the Craft Academy Bootcamp. This is a simmulation of ATM-machine that allow its customers to
-deposit and withdraw funds from their account. Ruby is the programming used and RSpec for testing.
+Our client is a financial institution that wants to allow its customers to withdraw funds from their accounts using an Automatic Teller Machine (ATM). They have turned to us for a prototype of a system with limited functionality. Our job is to write a simple Ruby program that can be run in the Interactive Ruby Shell (IRB).
+
+# Scope/Objectives
+
+The following objectives must be met:
+
+- An ATM machine can hold up to $1000
+- Withdrawal can be cleared only if
+- The ATM holds enough funds
+- The amount is divisible by 5
+- the person attempting the withdrawal provides a valid ATM card
+- Valid pin and expire date
+- Card status must be active (Not report stolen or lost)
+- the person attempting the withdrawal has sufficient funds on his account
+- There are only $5, $10 and $20 bills in the ATM. Withdrawals for amounts not divisible by 5 must be rejected
+- Upon a successful withdrawal the system should return a receipt with information about the date, amount and bills   that was dispatched. (The receipt should be presented in the form of a Hash.
 
 ## How to use:
 Open `irb` and run the following commands:
-``` irb
+```
 2.3.3 :001 > load 'lib/atm.rb'
  => true
 2.3.3 :002 > load 'lib/account.rb'
@@ -12,8 +26,9 @@ Open `irb` and run the following commands:
 2.3.3 :003 > load 'lib/person.rb'
  => true  
  ```
+
  ``` irb
- #Create Person
+ # Create Person
  2.3.3 :004 > person = Person.new(name:'Jennifer')
  => #<Person:0x007fe2f10b2620 @name="Jennifer", @cash=0, @account=nil>
  #Create account
